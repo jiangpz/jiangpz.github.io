@@ -1,32 +1,60 @@
-# YAX-Coming-soon-Jekyll-Template
-Free Bootstrap HTML5 CSS3 Responsive Coming soon  Jekyll template
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kronik3r/daktilo/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-Designed by : Ilya B.  
-url: https://www.behance.net/gallery/18421675/Free-Bootstrap-Psd-Coming-Soon-Template  
+# Daktilo
+Daktilo is a [Jekyll](jekyllrb.com) theme with a minimal design inspired from typewriters.
 
-Converted PSD to HTML/CSS by:  
-Morteza Aghili  
-bio: http://mortezaaghili.github.io/  
+# Live preview
+[Click here](http://hitchhiker.ma/daktilo/) to see the theme in action.
 
-Adpated to Jekyll by [yonojoy](https://github.com/yonojoy)
+# Features
+- Fully responsive
+- [Disqus](https://disqus.com/) integration for comments.
+- Google Analytics integration.
+- Syntax Highlighter (using [highlight.js](https://highlightjs.org/)).
+- Support for categories.
+- Font-Awesome Icons.
+- Optimized for SEO.
+- Coolest [404 page ever](http://hitchhiker.ma/daktilo/404.html).
 
-## Usage
-Edit `index.md` to contain your message.
+# How to use it
+Start by cloning the repository, then check the `_config.yml` file and change it accordingly.
+Note that the `title` property is what will be displayed as logo.
 
-Edit `_config.yml` and add the following params:
+Finally execute `jekyll serve --watch` and head to [localhost:4000](http://127.0.0.1:4000) to see the result.
 
-* `countdown` to contain the target date in GMT/UTC
-* `owner` to contain infos about the site owner.
+# Using categories
+Categories are little bit tricky. Please make sure to do the following for each category:
 
-That's it.
+- Create a file within `categories` folder with the name of your category
+For example let's say that we have a category called `An Awesome Category` you will need to add an `an-awesome-category.html` file with this content:
 
-## Installation
+``` html
+---
+layout: category
+category: an-awesome-category
+permalink: /categories/an-awesome-category/
+---
 
-Requires [Jekyll](http://jekyllrb.com/) 3+. 
+```
 
-If you are creating a new Jekyll site using Skinny Bones following these steps:
+- Create an entry inside `_data/categories.yml`
 
-1. Download and unzip.
-2. Run `bundle install` to install all dependencies 
-3. Update `_config.yml` and `index.md` as described above.
+``` html
+- slug: an-awesome-category
+  name: An Awesome Category
+```
 
+- Then you will see it in the footer in the `Explore` section.
+
+# Sneak peek
+
+![img][home_desktop]
+
+![img][home_phone]
+
+[home_desktop]: https://raw.githubusercontent.com/kronik3r/assets/master/daktilo/desktop.png
+[home_phone]: https://raw.githubusercontent.com/kronik3r/assets/master/daktilo/phone.png
+
+# License
+
+The contents of this repository is licensed under [The MIT License.](https://opensource.org/licenses/MIT)

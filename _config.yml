@@ -1,42 +1,21 @@
-# Site wide configuration
+# Site settings
+title: Daktilo
+description: >
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
 
-title: "Your Awesome Site"
-description: "A Coming Soon Template"
-#if you modify locale please have a look at _data/messages.yml too
-locale: en
-#for meta name="author" :
-author: 
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://hitchhiker.ma" # the base hostname & protocol for your site
 
-#Target date in UTC / GMT
-countdown:
-  theme: red
-  year: 2020
-  month: 1
-  day: 1
-  hour: 0
-  minute: 0
+author:
+  fullname: Motaquillah Maddane
+  googleplus: https://www.google.com/+MotaquillahMaddane
+  github: kronik3r
+  twitter: electrik_frog
+  # disqus: your_disqus_username
 
-# Site owner
-owner:
-  name:
-  email:
-  twitter:
-  google-plus:
-  instagramm:
-  #Aboutlink = German "Impressum", provide url and caption (eg "Impressum")
-  aboutlink:
-    url:
-    caption:
+# google_analytics: 'UA-XXXXXXXX-X'
 
-
-# Jekyll configuration
-sass:
-  sass_dir: _sass
-  style: compressed
-permalink: /:categories/:title/
-kramdown:
-  toc_levels: 1..2
-highlighter: rouge
-
-
-exclude: ["lib", "config.rb", ".sass-cache", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "*.sublime-project", "*.sublime-workspace", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "node_modules", "Gruntfile.js", "package.json"]
+# Build settings
+markdown: kramdown
