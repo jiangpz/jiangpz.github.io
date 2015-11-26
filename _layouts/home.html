@@ -1,80 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="no-js">
 
-  {% include head.html %}
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <body>
+    <title>{{ page.title | default: site.title }}</title>
+    {% if page.excerpt %}<meta name="description" content="{{ page.excerpt | strip_html }}">{% endif %}
+    {% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
+    {% if site.author %}<meta name="author" content="{{ site.author }}" />{% endif %}
 
-    <div class="cover">
-      <div class="clock"></div>
-      <div class='hours'></div>
-      <div class='seconds'></div>
-      <div class='minutes'></div>
-      <div class="site-name">
-        <div class="site-name__inner">
-          <div class="name">{{ site.title }}</div>
-          <div class="desc">{{site.description}}</div>
-          <div class="btn">Blog</div>
-        </div>
-      </div>
-    </div>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.classycountdown.min.css" />
 
-    <header class="site-header">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/jquery.classycountdown.min.js"></script>
+    <script src="js/jquery.knob.js"></script>
+    <script src="js/jquery.throttle.js"></script>
 
-      <div class="wrapper">
+</head>
 
-        <nav class="site-nav">
-            {% for page in site.pages %}
-              {% if page.title %}
-              <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-              {% endif %}
-            {% endfor %}
-        </nav>
-      </div>
+<body>
+    <header>
+        <section class="color">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1><i class="fa fa-clock-o" style="color:white"></i></h1>
+                        <h2>{{ page.title | default: site.title }}</h2>
+                        <p>{{ page.excerpt | default: site.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </header>
-    <div class="page-content">
-        {{ content }}
-    </div>
+    <section class="ss-style-doublediagonal main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    {{ content }}
+                </div>
+            </div>
 
-<script>
-  setInterval(function() {
-    var seconds = new Date().getSeconds();
-    var sdegree = seconds * 6 + 270;
-    seconds = ("0" + seconds).slice(-2);
-    var secondSel = document.querySelector(".seconds");
+            <div class="row">
+                <div class="col-sm-12">
 
-    secondSel.style.transform = "rotate(" + sdegree + "deg) translate(160px) rotate(-" + sdegree + "deg)";
-    secondSel.innerHTML = seconds;
+                    <div class="countdown"></div>
 
-    var minutes = new Date().getMinutes();
-    var mdegree = minutes * 6 + 270;
-    var minutesSel = document.querySelector(".minutes");
-    minutes = ("0" + minutes).slice(-2);
+                </div>
+            </div>
 
-    minutesSel.style.transform = "rotate(" + mdegree + "deg) translate(181px) rotate(-" + mdegree + "deg)";
-    minutesSel.innerHTML =  minutes;
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>{{ site.data.messages.locales[site.locale].Learn_More }}</h3>
+                    <!-- not supported in Jekyll:
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Email">
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger" type="button"><i class="fa fa-check"></i></button>
+                        </span>
+                    </div> -->
+                    <br> 
+                    <ul class="list-unstyled list-inline">
+                        {% if site.owner.email %}<li>
+                            <a href="mailto:{{ site.owner.email }}"><i class="fa fa-envelope"></i></a>
+                        </li>{% endif %}
+                        {% if site.owner.facebook %}<li>
+                            <a href="http://facebook.com/{{ site.owner.facebook }}"><i class="fa fa-facebook"></i></a>
+                        </li>{% endif %}
+                        {% if site.owner.twitter %}<li>
+                            <a href="http://twitter.com/{{ site.owner.twitter }}"><i class="fa fa-twitter"></i></a>
+                        </li>{% endif %}
+                        {% if site.owner.google_plus %}<li>
+                            <a href="https://google.com/{{ site.owner.google_plus }}"><i class="fa fa-google-plus"></i></a>
+                        </li>{% endif %}    
+                        {% if site.owner.instagram %}<li>
+                            <a href="http://instagram.com/{{ site.owner.instagram }}"><i class="fa fa-instagram"></i></a>
+                        </li>{% endif %}                
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    var hours = new Date().getHours();
-    var hoursSel = document.querySelector(".hours");
 
-    if (hours > 12) {
-      hours = hours - 12;
-    }
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <p>2015 - {{ site.owner.name }}</p>
 
-    hours = ("0" + hours).slice(-2);
+                    <P> {% if site.owner.aboutlink.url %}<a href="{{ site.owner.aboutlink.url }}">{{ site.owner.aboutlink.caption | default: "About" }}</a> | {% endif %}
+                        Page and Design by <a target="_blank" href="http://mortezaaghili.github.io/">M. Aghili</a> + 
+                        <a target="_blank" href="https://www.behance.net/gallery/18421675/Free-Bootstrap-Psd-Coming-Soon-Template">Ilya B.</a>
+                    </P>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    hoursSel.innerHTML = hours;
-  }, 1000);
 
-  var btnSel = document.querySelector('.btn');
-  var header = document.getElementsByTagName('header')[0];
 
-  btnSel.addEventListener("click", function() {
-    header.scrollIntoView();
-  }, false);
-
-</script>
-
-  </body>
+    <script>
+        $('.countdown').ClassyCountdown({
+            theme: "{{ site.countdown.theme }}",
+            now: $.now() / 1000,
+            end: Date.UTC({{ site.countdown.year }}, {{ site.countdown.month }} - 1, {{ site.countdown.day }}, {{ site.countdown.hour }}, {{ site.countdown.minute }}, 0) / 1000
+        });
+    </script>
+</body>
 
 </html>
