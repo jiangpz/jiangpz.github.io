@@ -1,42 +1,19 @@
-# Site wide configuration
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
 
-title: "Your Awesome Site"
-description: "A Coming Soon Template"
-#if you modify locale please have a look at _data/messages.yml too
-locale: en
-#for meta name="author" :
-author: 
+# Site settings
+title: 蒋佩钊的博客
+email: jiangpeizhao@outlook.com
+description: > # this means to ignore newlines until "baseurl:"
+  我的新博客，一切都在在准备中，敬请期待.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://yourdomain.com" # the base hostname & protocol for your site
+twitter_username: jekyllrb
+github_username:  jiangpz
 
-#Target date in UTC / GMT
-countdown:
-  theme: red
-  year: 2020
-  month: 1
-  day: 1
-  hour: 0
-  minute: 0
-
-# Site owner
-owner:
-  name:
-  email:
-  twitter:
-  google-plus:
-  instagramm:
-  #Aboutlink = German "Impressum", provide url and caption (eg "Impressum")
-  aboutlink:
-    url:
-    caption:
-
-
-# Jekyll configuration
-sass:
-  sass_dir: _sass
-  style: compressed
-permalink: /:categories/:title/
-kramdown:
-  toc_levels: 1..2
-highlighter: rouge
-
-
-exclude: ["lib", "config.rb", ".sass-cache", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "*.sublime-project", "*.sublime-workspace", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "node_modules", "Gruntfile.js", "package.json"]
+# Build settings
+markdown: kramdown
