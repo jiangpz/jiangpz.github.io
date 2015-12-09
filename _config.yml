@@ -4,15 +4,15 @@
 ####################################
 #
 title:       "Jiang Pz's blog"
-description: 'A backend developer who loves design awesome things. Working for RendezvousCheznous atm in Marseille, France.'
-url:         # the base hostname & protocol for your site
+description: 'A backend developer who loves design awesome things. Working for DHCC in Beijing, China.'
+url:         'http://jiangpz.github.io'
 
 #
 ###################################
 # Jekyll configuration
 ####################################
 #
-timezone:          Europe/Paris
+timezone:          Asia/Shanghai
 markdown:          kramdown
 highlighter:       pygments
 excerpt_separator: <!--more-->
@@ -37,16 +37,16 @@ owner:
   bio: "A backend developer who loves design awesome things. Working for DHCC in Beijing, China."
   email: jiangpeizhao@outlook.com
   disqus-shortname: jiangpzblog
-  twitter: alittlered3 #username
+  twitter: #username
   facebook: #username
   google:
     plus: #username
-    analytics: UA-62251910-1
+    analytics: #UA-62251910-1
     verify:
     ad-client:
     ad-slot:
   bing-verify:
-  github: renyuanz #username
+  github: jiangpz #username
   stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
   linkedin: #username
   xing: #username
@@ -59,6 +59,6 @@ owner:
   dribbble: #username
   youtube: #username
   soundcloud: #username
-  weibo: #username
+  weibo: NewSaga #username
   flickr: #username
   codepen: #username
