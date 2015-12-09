@@ -6,6 +6,10 @@
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }} | A Jekyll theme{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
+  <!-- 加载动画 Start -->
+  <script src="{{ site.url }}/js/pace/pace.js"></script>
+  <link href="{{ site.url }}/js/pace/themes/wine/pace-theme-flash.css" rel="stylesheet" />
+  <!-- 加载动画 End -->
   <!-- CSS files -->
   <link rel="stylesheet" href="{{ site.url }}/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ site.url }}/css/main.css">
