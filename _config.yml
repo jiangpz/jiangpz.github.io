@@ -31,10 +31,10 @@ kramdown:
 ####################################
 #
 owner:
-  name: Renyuan
+  name: JiangPz
   avatar: avatar.jpg
-  job: "PHP & Ruby Developer"
-  bio: "A backend developer who loves design awesome things. Working for RendezvousCheznous atm in Marseille, France."
+  job: "J2EE Developer"
+  bio: "A backend developer who loves design awesome things. Working for DHCC in Beijing, China."
   email: zourenyuan@gmail.com
   disqus-shortname: renyuanzblog
   twitter: alittlered3 #username
