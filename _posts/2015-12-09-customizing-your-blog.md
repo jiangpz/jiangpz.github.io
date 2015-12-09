@@ -4,7 +4,7 @@ title: "Customizing Your Blog"
 excerpt: "关于博客头信息的说明."
 categories: MAC
 tags: [terminal, iTerm2, OS X]
-date: 2015-04-29 21:32:27 +0800
+date: 2015-12-09 18:00:00 +0800
 comments: true
 ---
 对头信息进行说明：
