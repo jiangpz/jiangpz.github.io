@@ -8,21 +8,24 @@ date: 2015-08-05 18:00:00 +0800
 comments: true
 ---
 ---
-Terminal是CentOS最为常用的系统工具，每次通过菜单或者桌面快捷方式打开太麻烦了，我们将其快捷键甚至为“Ctrl + Shift + t”，设置步骤如下：
+转载自：[再见理想](http://www.cnblogs.com/exmyth/p/3507010.html)
 
-1. 点击“System”→“Preference”→“Keyboard Shortcuts”
-![](http://ww2.sinaimg.cn/large/4dd787e4jw1euom9p128mj20zk0lbgpj.jpg)
-2. 左键单击“Desktop”→“Run a terminal”，后面变为New shortcut..
-![](http://ww1.sinaimg.cn/large/4dd787e4jw1euom9q6syqj20j00br767.jpg)
-3. 按下“Ctrl + Shift + t”，此时“New shortcut..”变为“Shift + t”
-![](http://ww3.sinaimg.cn/large/4dd787e4jw1euom9pc6djj20iw0glju1.jpg)
-4. 点击右下角“close”
-5. 按下“Ctrl + Shift + t”，Terminal（终端）弹出。设置完成。
+Spring官网改版后找了好久都没有找到直接下载Jar包的链接,下面汇总些网上提供的方法,亲测可用.
+
+1.直接输入地址,改相应版本即可:http://repo.springsource.org/libs-release-local/org/springframework/spring/3.2.4.RELEASE/spring-framework-3.2.4.RELEASE-dist.zip
+
+2.在1的方法上输入前面部分,有个树形结构可供选择:http://repo.springsource.org/libs-release-local/org/springframework/spring/
+
+3.同样的,,有树形结构选择需要的包下载:http://repo.spring.io/milestone/org/springframework/
+
+源码可以在Git上直接获取,地址:https://github.com/spring-projects/spring-framework
+相关依赖包可在apache官网获取一些:http://www.apache.org/
+
 
 
 
 ---
  [@Jpz][writer]
-2015 年 08月 02日
+2015 年 08月 05日
 
 [writer]: http://blog.sina.com.cn/u/1305970660
