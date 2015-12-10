@@ -2,12 +2,66 @@
    Syntax highlighting
    ========================================================================== */
 
+/*
 pre, code {
   font-family: $font-family-monospace;
   color: $text-color;
   background-color: #242a3a;
   font-size: ($font-size-base - 2);
 }
+*/
+pre, code {
+//  white-space: pre;
+//  display: inline-block;
+  margin: 0;
+//  padding: 0;
+  font-family: Menlo, Consolas, "Courier New", Courier, "Liberation Mono", monospace;
+  font-size: ($font-size-base - 2);
+  padding: 0 .5em;
+//  line-height: 1.8em;
+}
+
+pre { // only apply for code blocks
+  overflow: auto;
+  display: block;
+  padding: 1em;
+  margin: 0 0 1em;
+  line-height: $base-line-height * 0.925;
+  word-break: break-all;
+  word-wrap: break-word;
+  border-radius: 0;
+  font-weight: normal;
+}
+
+@media (min-width: 768px){
+  pre, code {
+    font-size: ($font-size-base - 2);
+  }
+}
+
+.highlight, p > pre, p > code, p > nobr > code, li > code, h5 > code, .note > code {
+  background: #333;
+  color: $white;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 10px rgba(0,0,0,.3),
+    0 1px 0 rgba(255,255,255,.1),
+    0 -1px 0 rgba(0,0,0,.5);
+}
+
+.note code {
+  background-color: rgba(0,0,0,0.2);
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+  font-size: 0.8em;
+}
+
+.highlight {
+  padding: 10px 0;
+  width: 100%;
+  overflow: auto;
+}
+
+/*
 code {
   background: #f5f5f5;
   word-break: break-all;
@@ -35,10 +89,12 @@ pre code {
     word-break: break-all;
   }
 }
+*/
 .highlight {
   margin: 0;
   pre code {
     color: #ddd;
+    display: inline-block;
   }
   .hll { background-color: #515151 }
   .c { color: #999999 } /* Comment */

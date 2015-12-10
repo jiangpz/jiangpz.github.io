@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  CentOS 6.6 中中文输入法设置
+excerpt: "安装完CentOS 6.6系统之后，我们需要设置系统自带的中文输入法."
 date:   2015-11-26 16:46:21 +0800
 categories: jekyll update
 ---
