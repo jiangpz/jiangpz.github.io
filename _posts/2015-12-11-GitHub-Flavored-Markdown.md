@@ -1,7 +1,7 @@
 ---
 layout: post
-title: GitHub Flavored Markdown
-excerpt: "对Standard Markdown(SM)和GitHub Flavored Markdown(GFM)进行介绍，来自官方文档."
+title: Markdown语法
+excerpt: "对Standard Markdown(SM)和GitHub Flavored Markdown(GFM)进行介绍，参考自官方文档。"
 categories: Markdown
 tags: [Markdown, Jekyll]
 date: 2015-12-11 18:00:00 +0800
