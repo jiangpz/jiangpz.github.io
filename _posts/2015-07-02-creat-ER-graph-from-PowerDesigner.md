@@ -32,7 +32,7 @@ comments: true
 若连接不成功，则需要配置ojdbc14.jar的环境变量，过程如下：  
 ![2.6](http://ww4.sinaimg.cn/large/4dd787e4gw1etkzgw6hxhj20px0huq8t.jpg)  
 
-5. 连接成功后，点击“Database”->"Update Model from  Database(快捷键为：CTRL_R)",弹出窗口“Database Reverse Engineering Options”,如下图所示：  
+5. 连接成功后，点击“Database”->"Update Model from  Database(快捷键为：`CTRL_R`)",弹出窗口“Database Reverse Engineering Options”,如下图所示：  
 ![5.1](http://ww4.sinaimg.cn/large/4dd787e4gw1etkzgunb8jj20ri0lpn35.jpg)  
 完成配置后，弹出如下窗口：  
 ![5.2](http://ww3.sinaimg.cn/large/4dd787e4gw1etkzgv5imuj20dy0cmad6.jpg)  
