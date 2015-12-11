@@ -235,14 +235,14 @@ function fancyAlert(arg) {
 }    
 {% endhighlight %}
 
-在写github pages时，在jekyll中使用pygments来实现代码高亮，如下(百分号前的下划线是转义字符，粘贴时实际应该去掉)：
+在写github pages时，在jekyll中使用pygments来实现代码高亮，如下(百分号前的斜杠是转义字符，粘贴时实际应该去掉)：
 
 {% highlight text %}
-{\\\% highlight ruby linenos \\\%}
+{\% highlight ruby linenos \%}
 def foo
   puts 'foo'
 end
-{\\\% endhighlight \\\%}
+{\% endhighlight \%}
 {% endhighlight %}
 
 效果如下：
