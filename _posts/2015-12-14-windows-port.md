@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Windows某个端口被占用情况"
-excerpt: "安装完CentOS 6.6系统之后，我们需要设置系统自带的中文输入法."
-date:   2013-01-09 19:00:42 +0800
+excerpt: "解决Windows某个端口被占用的问题."
+date:   2015-12-14 11:46:42 +0800
 categories: cmd
 tags: [cmd, Windows]
 ---
