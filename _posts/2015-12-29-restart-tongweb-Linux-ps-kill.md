@@ -114,6 +114,7 @@ Linux中的kill命令用来终止指定的进程（terminate a process）的运�
 ##### 命令格式
 
 kill [-s 信号编码|-p] [--] pid...
+
 kill -l [信号编码]
 
 ##### 命令功能
@@ -132,4 +133,6 @@ kill -l [信号编码]
 
  - 列出所有信号名称：kill -l
  - 彻底杀死pid为123456的进程：kill –9 123456
- - 杀死指定用户peidalinux所有进程：kill -9 $(ps -ef | grep peidalinux)或者kill -u peidalinux
+ - 杀死指定用户peidalinux所有进程，两种方法：
+     - kill -9 $(ps -ef | grep peidalinux)
+     - kill -u peidalinux
