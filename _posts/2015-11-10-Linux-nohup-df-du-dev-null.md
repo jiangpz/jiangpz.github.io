@@ -83,7 +83,7 @@ nohup命令：如果你正在运行一个进程，而且你觉得在退出帐户
 ###### 使用nohup命令提交作业
 如果使用nohup命令提交作业，那么在缺省情况下该作业的所有输出都被重定向到一个名为nohup.out的文件中，除非另外指定了输出文件：
 
-{% highlight sh linenos %}
+{% highlight sh %}
 nohup command > myout.file 2>&1 &
 {% endhighlight %}
 
@@ -97,7 +97,7 @@ nohup command > myout.file 2>&1 &
 
 但是此时还是会产生nohup文件的，需要执行：
 
-{% highlight sh linenos %}
+{% highlight sh %}
 nohup ./xxxxxx & > /dev/null
 {% endhighlight %}
 
