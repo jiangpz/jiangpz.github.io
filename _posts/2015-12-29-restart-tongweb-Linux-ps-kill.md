@@ -134,5 +134,5 @@ kill -l [信号编码]
  - 列出所有信号名称：kill -l
  - 彻底杀死pid为123456的进程：kill –9 123456
  - 杀死指定用户peidalinux所有进程，两种方法：
-     - kill -9 $(ps -ef | grep peidalinux)
-     - kill -u peidalinux
+     - `kill -9 $(ps -ef | grep peidalinux)``
+     - `kill -u peidalinux`
