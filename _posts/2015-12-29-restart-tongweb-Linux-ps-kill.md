@@ -28,7 +28,7 @@ vi /home/TongWeb6.0/conf/tongweb.xml
     <http-options/>
     <advance/>
 </http-listener>
-{% highlight xml %}
+{% endhighlight %}
 
 修改之后保存退出。
 
@@ -53,23 +53,23 @@ root      71983  0.4  3.8 10811676 2552512 ?    Sl   Dec25  27:10 /home/jdk1.6.0
 
 其中第二列为PID，可以看到PID为71983的与TongWeb相关的进程并没有停止。使用`kill`结束这个进程(kill这个命令在下面详述):
 
-```
+{% highlight sh %}
 [root@weblogic01 ~]# kill -9 71983
 [root@weblogic01 ~]# ps aux | grep tong
 root      50489  0.0  0.0 103256   848 pts/0    S+   11:19   0:00 grep tong
-```
+{% endhighlight %}
 
 #### 启动TongWeb
 
 启动TongWeb比较简单，使用nohup(nohup的使用方法详见[Linux命令：nohup、df、du与/dev/null](http://jiangpz.github.io/articles/2015-11/Linux-nohup-df-du-dev-null)),需要注意“&”的位置，不要少空格，在运行成功后敲一个回车再退出终端:
 
-```
+{% highlight sh %}
 [root@weblogic01 ~]# nohup /home/TongWeb6.0/bin/startserver.sh & > /dev/null
 [1] 50753
 [root@weblogic01 ~]# nohup: 蹇界暐杈撳叆骞舵妸杈撳嚭杩藉姞鍒nohup.out"
 
 [root@weblogic01 ~]#
-```
+{% endhighlight %}
 
 #### ps
 
