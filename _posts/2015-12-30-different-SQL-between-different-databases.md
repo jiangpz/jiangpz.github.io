@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "不同数据库中SQL的不同"
-excerpt: "修改TongWeb默认编码与TongWeb重启方法."
+excerpt: "不同数据库中SQL函数存在不同."
 date:   2015-12-30 15:46:21 +0800
 categories: SQL
 tags: [SQl, Oracle，MySQL]
@@ -233,3 +233,26 @@ tags: [SQl, Oracle，MySQL]
       from dept
      where deptno not in (select deptno from emp)
     {% endhighlight %}
+
+##### 从一个表中查找与其他表不匹配的记录
+
+ - DB2、PostgreSQL、MySQL和SQL Server
+
+    使用外联接及NULL筛选(OUTER关键字是可选的)。
+
+    {% highlight sql linenos %}
+    select d.*
+      from dept d left outer join emp e
+     where e.deptno is null
+    {% endhighlight %}
+
+ - Oracle
+
+    在Oracle9i之前可使用上面的解决方案，也可使用Oracle特有的外联接语法。
+
+    {% highlight sql linenos %}
+    select d.*
+      from dept d, emp e
+     where d.deptno = d.deptno (+)
+       and e.deptno is null
+    {% endhighlight %}  
