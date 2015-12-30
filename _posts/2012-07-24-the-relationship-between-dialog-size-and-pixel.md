@@ -19,7 +19,7 @@ typedef unsigned long   DWORD;
 我们知道可以用记事本打开.rc文件，然后改里面的坐标，来改变对话框大小，如：
 以下是rc文件
 
-{% highlight resource %}
+{% highlight text %}
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
