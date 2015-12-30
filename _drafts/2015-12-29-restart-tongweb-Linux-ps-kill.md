@@ -1,11 +1,5 @@
----
-layout: post
-title:  "在Linux中TongWeb乱码与重启TongWeb:ps、kill"
-excerpt: "修改TongWeb默认编码与TongWeb重启方法."
-date:   2015-12-29 15:46:21 +0800
-categories: Linux
-tags: [Linux, TongWeb]
----
+### 在Linux中TongWeb乱码与重启TongWeb:ps、kill
+
 
 在使用TongWeb中经常会出现乱码，我们的项目默认使用UTF-8编码，而TongWeb默认使用的编码是GBK。修改完编码后TongWeb是需要重启的，可是TongWeb可不是个省心的中间件。
 
@@ -15,20 +9,20 @@ tags: [Linux, TongWeb]
 
 使用vi打开配置文件：
 
-{% highlight sh %}
+```
 vi /home/TongWeb6.0/conf/tongweb.xml
-{% endhighlight %}
+```
 
 打开后找到这http-listener，将其中的uri-encoding改为UTF-8，如下：
 
-{% highlight xml %}
+```
 <http-listener name="tong-http-listener" port="8080" uri-encoding="UTF-8" parse-body-methods="POST,DELETE,PUT" default-virtual-host="server" create-time="2015-12-24 15:18:50">
     <ssl/>
     <protocol/>
     <http-options/>
     <advance/>
 </http-listener>
-{% endhighlight %}
+```
 
 修改之后保存退出。
 
@@ -36,40 +30,40 @@ vi /home/TongWeb6.0/conf/tongweb.xml
 
 停止TongWeb时一般先运行stopserver.sh：
 
-{% highlight sh %}
+```
 [root@weblogic01 ~]# /home/TongWeb6.0/bin/stopserver.sh
 [2015-12-29 11:19:12] [WARNING] [System.out] [log4j:WARN No appenders could be found for logger (com.tongweb.commons.modeler.BaseModelMBean).]
 [2015-12-29 11:19:12] [WARNING] [System.out] [log4j:WARN Please initialize the log4j system properly.]
-{% endhighlight %}
+```
 
 但是这样是不能够彻底停止TongWeb的进程的。所以在运行stopserver.sh之后，我们查看现在系统进程中是否还有TongWeb，使用`ps aux | grep tong`(ps这个命令在下面详述):
 
-{% highlight sh %}
+```
 [root@weblogic01 ~]# ps aux | grep tong
 USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root      50465  0.0  0.0 103256   852 pts/0    S+   11:19   0:00 grep tong
 root      71983  0.4  3.8 10811676 2552512 ?    Sl   Dec25  27:10 /home/jdk1.6.0_45/bin/java -classpath /home/jdk1.6.0_45/lib/tools.jar:/home/TongWeb6.0/lib/launcher.jar -Xms5120m -Xmx5120m -XX:MaxPermSize=1024m -XX:+UnlockDiagnosticVMOptions -XX:+LogVMOutput -Djava.security.auth.login.config=/home/TongWeb6.0/conf/security/login.config -Djava.util.logging.manager=com.tongweb.log.TongwebLogManager -Djava.endorsed.dirs=/home/TongWeb6.0/lib/endorsed -Dtongweb.jndi.lookup.relaxVersion=false -Djava.security.egd=file:/dev/./urandom -Djava.rmi.server.RMIClassLoaderSpi=com.tongweb.server.TongWebRMIClassLoader -javaagent:/home/TongWeb6.0/lib/tongejb-javaagent.jar -Djava.awt.headless=true -Dibm.stream.nio=true -Djava.net.preferIPv4Stack=true -XX:LogFile=/home/TongWeb6.0/logs/jvm.log -Dcom.tongweb.commons.logging.Log=com.tongweb.commons.logging.impl.Jdk14Logger -Dtongweb.java=/home/jdk1.6.0_45 -Dtongweb.upload=/home/TongWeb6.0/temp/upload -Dtongweb.app=/home/TongWeb6.0/deployment -Dtongweb.sysapp=/home/TongWeb6.0/applications -Dtongweb.home=/home/TongWeb6.0 -Djava.io.tmpdir=/home/TongWeb6.0/temp -Dtongweb.snapshotinhour=5 com.tongweb.web.thor.startup.ThorBootstrap start
-{% endhighlight %}
+```
 
 其中第二列为PID，可以看到PID为71983的与TongWeb相关的进程并没有停止。使用`kill`结束这个进程(kill这个命令在下面详述):
 
-{% highlight sh %}
+```
 [root@weblogic01 ~]# kill -9 71983
 [root@weblogic01 ~]# ps aux | grep tong
 root      50489  0.0  0.0 103256   848 pts/0    S+   11:19   0:00 grep tong
-{% endhighlight %}
+```
 
 #### 启动TongWeb
 
 启动TongWeb比较简单，使用nohup(nohup的使用方法详见[Linux命令：nohup、df、du与/dev/null](http://jiangpz.github.io/articles/2015-11/Linux-nohup-df-du-dev-null)),需要注意“&”的位置，不要少空格，在运行成功后敲一个回车再退出终端:
 
-{% highlight sh %}
+```
 [root@weblogic01 ~]# nohup /home/TongWeb6.0/bin/startserver.sh & > /dev/null
 [1] 50753
 [root@weblogic01 ~]# nohup: 蹇界暐杈撳叆骞舵妸杈撳嚭杩藉姞鍒nohup.out"
 
 [root@weblogic01 ~]#
-{% endhighlight %}
+```
 
 #### ps
 
