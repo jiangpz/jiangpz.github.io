@@ -144,6 +144,3 @@ public static String getRemoteIp(HttpServletRequest request){
  	</jaxws:endpoint>
 </beans>  
 {% endhighlight %}
-
-
-此时在接口被访问时（例如访问`http://localhost:8080/项目名称/ws/uums?wsdl`），就会输出客户端的IP地址。
