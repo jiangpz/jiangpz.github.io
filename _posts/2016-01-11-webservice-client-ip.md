@@ -33,7 +33,7 @@ import cn.com.dhcc.app.core.util.NetUtil;
 public class InLoggingInterceptor extends AbstractPhaseInterceptor<Message> {
 
 	public InLoggingInterceptor() {
-    //制定拦截器在哪个阶段被激发,如果在调用之前进行拦截可使用PRE_INVOKE
+    //指定拦截器在哪个阶段被激发,如果在调用之前进行拦截可使用PRE_INVOKE
 		super(Phase.RECEIVE);
 	}
 
@@ -90,7 +90,7 @@ public static String getRemoteIp(HttpServletRequest request){
 
 #### 修改配置文件
 
-在完成接口，还没有配置拦截器前。对应的XML文件如下：
+在完成接口，还没有配置拦截器前，对应的XML文件如下：
 
 {% highlight java lineos %}
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -138,9 +138,9 @@ public static String getRemoteIp(HttpServletRequest request){
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
 
  	<jaxws:endpoint id="uumsServiceImplWs" implementor="#uumsServiceImpl" address="/uums" >  
-    <jaxws:inInterceptors>  
-      <bean class="cn.com.dhcc.app.pub.core.interceptor.InLoggingInterceptor"/>
-    </jaxws:inInterceptors>
+ 	 	<jaxws:inInterceptors>  
+ 	 	 	<bean class="cn.com.dhcc.app.pub.core.interceptor.InLoggingInterceptor"/>
+ 	 	</jaxws:inInterceptors>
  	</jaxws:endpoint>
 </beans>  
 {% endhighlight %}
