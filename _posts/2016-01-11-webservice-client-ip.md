@@ -21,9 +21,11 @@ package cn.com.dhcc.app.pub.core.interceptor;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.cxf.interceptor.Fault;
+import org.apache.cxf.message.Exchange;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.AbstractPhaseInterceptor;
 import org.apache.cxf.phase.Phase;
+import org.apache.cxf.service.model.OperationInfo;
 import org.apache.cxf.transport.http.AbstractHTTPDestination;
 import org.springframework.stereotype.Component;
 
@@ -34,13 +36,22 @@ public class InLoggingInterceptor extends AbstractPhaseInterceptor<Message> {
 
 	public InLoggingInterceptor() {
     //指定拦截器在哪个阶段被激发,如果在调用之前进行拦截可使用PRE_INVOKE
-		super(Phase.RECEIVE);
+		//super(Phase.RECEIVE);
+		//获取函数名需要在这个阶段拦截，在RECEIVE获取可能是空值，因在RECEIVE阶段下，访问http://localhost:8061/dhcc-uums/ws/uums?wsdl时会被拦截，会获取到空值。
+		super(Phase.USER_LOGICAL);
 	}
 
 	@Override
 	public void handleMessage(Message message) throws Fault {
+
 		HttpServletRequest request = (HttpServletRequest) message.get(AbstractHTTPDestination.HTTP_REQUEST);
+		System.out.println("----IP------");
 		System.out.println(NetUtil.getRemoteIp(request));
+
+    Exchange exchange = message.getExchange();
+    OperationInfo ori = exchange.get(OperationInfo.class);
+    System.out.println("----方法名------");
+    System.out.println(ori.getInputName());
 	}
 
 }
