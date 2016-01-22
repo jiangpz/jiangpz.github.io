@@ -3,7 +3,7 @@ layout: post
 title: div垂直居中
 excerpt: "HTML中使用CSS设置div居中显示."
 categories: CSS
-tags: [CSS, HTML]
+tags: [CSS, HTML, IE兼容性]
 date: 2015-11-16 18:08:03 +0800
 comments: true
 ---

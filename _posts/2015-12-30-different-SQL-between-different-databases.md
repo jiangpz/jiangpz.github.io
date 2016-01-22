@@ -567,3 +567,47 @@ tags: [SQl, Oracle，MySQL]
            ) x
      where sal not in (min_sal,max_sal)
     {% endhighlight %}
+
+### 日期运算
+
+使用同一种日期格式，即“DD-MON-YYYY”。
+
+##### 加减日/月/年
+
+- DB2
+
+  {% highlight sql linenos %}
+  select hiredate -5 day   as hd_minus_5D,
+         hiredate +5 day   as hd_plus_5D,
+         hiredate -5 month as hd_minus_5M,
+         hiredate +5 month as hd_plus_5M,
+         hiredate -5 year  as hd_minus_5Y,
+         hiredate +5 year  as hd_plus_5Y
+    from emp
+   where deptno = 10
+  {% endhighlight %}
+
+- Oracle
+
+  {% highlight sql linenos %}
+  select hiredate-5 as hd_minus_5D,
+         hiredate+5 as hd_plus_5D,
+         add_months(hiredate,-5) as hd_minus_5M,
+         add_months(hiredate,5)  as hd_plus_5M,
+         add_months(hiredate,-5*12) as hd_minus_5Y,
+         add_months(hiredate,5*12) as hd_plus_5Y
+    from emp
+   where deptno = 10
+  {% endhighlight %}
+
+- PostgreSQL
+
+   使用自连接查找中间数   
+
+- MySQL和PostgreSQL
+
+   使用自连接查找中间数   
+
+ - SQL Server
+
+    使用窗口函数COUNT(\*)  OVER 和 ROW_NUMBER，查找中间数
