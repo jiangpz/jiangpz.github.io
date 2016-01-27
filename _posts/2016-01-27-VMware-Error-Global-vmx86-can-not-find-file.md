@@ -7,7 +7,7 @@ categories: Vmware
 tags: [Vmware]
 ---
 
-问题描述：vmware启动提示“无法打开内核设备 \\.\Global\vmx86: 系统找不到指定的文件”
+问题描述：vmware启动提示``无法打开内核设备 \\.\Global\vmx86: 系统找不到指定的文件``
 
 这是因为虚拟机服务没有开启:
 
