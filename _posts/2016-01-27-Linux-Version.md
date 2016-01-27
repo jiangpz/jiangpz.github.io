@@ -2,7 +2,7 @@
 layout: post
 title:  "查看linux内核版本号版本信息"
 excerpt: "查看linux版本。"
-date:   2016-01-27 09:46:21 +0800
+date:   2016-01-27 10:00:21 +0800
 categories: Linux
 tags: [Linux]
 ---
