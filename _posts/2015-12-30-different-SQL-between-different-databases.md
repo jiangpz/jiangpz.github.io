@@ -602,12 +602,451 @@ tags: [SQl, Oracle，MySQL]
 
 - PostgreSQL
 
-   使用自连接查找中间数   
+  {% highlight sql linenos %}
+  select hiredate - interval '5 day'   as hd_minus_5D,
+        hiredate + interval '5 day'   as hd_plus_5D,
+        hiredate - interval '5 month' as hd_minus_5M,
+        hiredate + interval '5 month' as hd_plus_5M,
+        hiredate - interval '5 year'  as hd_minus_5Y,
+        hiredate + interval '5 year'  as hd_plus_5Y
+        from emp
+        where deptno=10
+  {% endhighlight %}   
 
-- MySQL和PostgreSQL
+- MySQL
 
-   使用自连接查找中间数   
+  {% highlight sql linenos %}
+  select hiredate - interval 5 day   as hd_minus_5D,
+         hiredate + interval 5 day   as hd_plus_5D,
+         hiredate - interval 5 month as hd_minus_5M,
+         hiredate + interval 5 month as hd_plus_5M,
+         hiredate - interval 5 year  as hd_minus_5Y,
+         hiredate + interval 5 year  as hd_plus_5Y
+    from emp
+   where deptno=10
+  {% endhighlight %}   
+
+  或者
+
+  {% highlight sql linenos %}
+  select date_add(hiredate,interval -5 day)   as hd_minus_5D,
+         date_add(hiredate,interval  5 day)   as hd_plus_5D,
+         date_add(hiredate,interval -5 month) as hd_minus_5M,
+         date_add(hiredate,interval  5 month) as hd_plus_5M,
+         date_add(hiredate,interval -5 year)  as hd_minus_5Y,
+         date_add(hiredate,interval  5 year)  as hd_plus_5DY
+    from emp
+   where deptno=10
+  {% endhighlight %}   
 
  - SQL Server
 
-    使用窗口函数COUNT(\*)  OVER 和 ROW_NUMBER，查找中间数
+  {% highlight sql linenos %}
+  select dateadd(day,-5,hiredate)   as hd_minus_5D,
+        dateadd(day,5,hiredate)    as hd_plus_5D,
+        dateadd(month,-5,hiredate) as hd_minus_5M,
+        dateadd(month,5,hiredate)  as hd_plus_5M,
+        dateadd(year,-5,hiredate)  as hd_minus_5Y,
+        dateadd(year,5,hiredate)   as hd_plus_5Y
+   from emp
+  where deptno = 10
+  {% endhighlight %}
+
+##### 计算两个日期之间的天数
+
+- DB2
+
+  {% highlight sql linenos %}
+  select days(ward_hd) - days(allen_hd)
+    from (
+  select hiredate as ward_hd
+    from emp
+   where ename = 'WARD'
+         ) x,
+         (
+  select hiredate as allen_hd
+    from emp
+   where ename = 'ALLEN'
+         ) y
+  {% endhighlight %}
+
+- Oracle 和 PostgreSQL
+
+  {% highlight sql linenos %}
+  select ward_hd - allen_hd
+    from (
+  select hiredate as ward_hd
+    from emp
+   where ename = 'WARD'
+         ) x,
+         (
+  select hiredate as allen_hd
+    from emp
+   where ename = 'ALLEN'
+         ) y
+  {% endhighlight %}
+
+- MySQL 和 SQL Server
+
+  {% highlight sql linenos %}
+  select datediff(day,allen_hd,ward_hd)
+    from (
+  select hiredate as ward_hd
+    from emp
+   where ename = 'WARD'
+         ) x,
+         (
+  select hiredate as allen_hd
+    from emp
+   where ename = 'ALLEN'
+         ) y
+  {% endhighlight %}
+
+##### 确定两个日期之间的工作日数目
+
+首先计算起始日期和结束日期之间的天数，再计算除周末外共有多少天（即行数）
+
+- DB2
+
+  {% highlight sql linenos %}
+  select sum(case when dayname(jones_hd+t500.id day -1 day)
+                    in ( 'Saturday','Sunday' )
+                  then 0 else 1
+             end) as days
+    from (
+  select max(case when ename = 'BLAKE'
+                  then hiredate
+             end) as blake_hd,
+         max(case when ename = 'JONES'
+                  then hiredate
+             end) as jones_hd
+    from emp
+   where ename in ( 'BLAKE','JONES' )
+         ) x,
+         t500
+   where t500.id <= blake_hd-jones_hd+1
+  {% endhighlight %}
+
+- MySQL
+
+  {% highlight sql linenos %}
+  select sum(case when date_format(
+                          date_add(jones_hd,
+                                   interval t500.id-1 DAY),'%a')
+                    in ( 'Sat','Sun' )
+                  then 0 else 1
+             end) as days
+    from (
+  select max(case when ename = 'BLAKE'
+                  then hiredate
+             end) as blake_hd,
+         max(case when ename = 'JONES'
+                  then hiredate
+              end) as jones_hd
+    from emp
+   where ename in ( 'BLAKE','JONES' )
+         ) x,
+         t500
+   where t500.id <= datediff(blake_hd,jones_hd)+1
+  {% endhighlight %}
+
+- PostgreSQL
+
+  {% highlight sql linenos %}
+  select sum(case when trim(to_char(jones_hd+t500.id-1,'DAY'))
+                    in ( 'SATURDAY','SUNDAY' )
+                  then 0 else 1
+             end) as days
+    from (
+  select max(case when ename = 'BLAKE'
+                  then hiredate
+             end) as blake_hd,
+         max(case when ename = 'JONES'
+                  then hiredate
+             end) as jones_hd
+    from emp
+   where ename in ( 'BLAKE','JONES' )
+         ) x,
+         t500
+   where t500.id <= blake_hd-jones_hd+1
+  {% endhighlight %}
+
+- SQL Server
+
+  {% highlight sql linenos %}
+  select sum(case when datename(dw,jones_hd+t500.id-1)
+                    in ( 'SATURDAY','SUNDAY' )
+                   then 0 else 1
+             end) as days
+    from (
+  select max(case when ename = 'BLAKE'
+                  then hiredate
+             end) as blake_hd,
+         max(case when ename = 'JONES'
+                  then hiredate
+             end) as jones_hd
+    from emp
+   where ename in ( 'BLAKE','JONES' )
+         ) x,
+         t500
+   where t500.id <= datediff(day,jones_hd-blake_hd)+1
+  {% endhighlight %}
+
+#### 确定两个日期之间的月份数或年数
+
+- DB2 and MySQL
+
+  {% highlight sql linenos %}
+  select mnth, mnth/12
+    from (
+  select (year(max_hd) - year(min_hd))*12 +
+         (month(max_hd) - month(min_hd)) as mnth
+    from (
+  select min(hiredate) as min_hd, max(hiredate) as max_hd
+    from emp
+         ) x
+         ) y
+  {% endhighlight %}
+
+- Oracle
+
+  {% highlight sql linenos %}
+  select months_between(max_hd,min_hd),
+         months_between(max_hd,min_hd)/12
+    from (
+  select min(hiredate) min_hd, max(hiredate) max_hd
+    from emp
+         ) x
+  {% endhighlight %}
+
+- PostgreSQL
+
+{% highlight sql linenos %}
+select mnth, mnth/12
+  from (
+select ( extract(year from max_hd)
+         extract(year from min_hd) ) * 12
+       +
+       ( extract(month from max_hd)
+         extract(month from min_hd) ) as mnth
+  from (
+select min(hiredate) as min_hd, max(hiredate) as max_hd
+  from emp
+       ) x
+       ) y
+{% endhighlight %}
+
+- SQL Server
+
+  {% highlight sql linenos %}
+  select datediff(month,min_hd,max_hd),
+         datediff(month,min_hd,max_hd)/12
+    from (
+  select min(hiredate) min_hd, max(hiredate) max_hd
+    from emp
+         ) x
+  {% endhighlight %}
+
+#### 确定两个日期之间的秒、分、小时数
+
+知道了两个日期之间的天数，就可以计算出秒、分、小时数。
+
+- DB2
+
+  {% highlight sql linenos %}
+  select dy*24 hr, dy*24*60 min, dy*24*60*60 sec
+    from (
+  select ( days(max(case when ename = 'WARD'
+                    then hiredate
+               end)) -
+           days(max(case when ename = 'ALLEN'
+                    then hiredate
+               end))
+         ) as dy
+    from emp
+         ) x
+  {% endhighlight %}
+
+- MySQL and SQL Server
+
+  {% highlight sql linenos %}
+  select datediff(day,allen_hd,ward_hd)*24 hr,
+         datediff(day,allen_hd,ward_hd)*24*60 min,
+         datediff(day,allen_hd,ward_hd)*24*60*60 sec
+    from (
+  select max(case when ename = 'WARD'
+                   then hiredate
+             end) as ward_hd,
+         max(case when ename = 'ALLEN'
+                  then hiredate
+             end) as allen_hd
+    from emp
+         ) x
+  {% endhighlight %}
+
+- Oracle and PostgreSQL
+
+  {% highlight sql linenos %}
+  select dy*24 as hr, dy*24*60 as min, dy*24*60*60 as sec
+    from (
+  select (max(case when ename = 'WARD'
+                  then hiredate
+             end) -
+         max(case when ename = 'ALLEN'
+                  then hiredate
+             end)) as dy
+    from emp
+        ) x
+  {% endhighlight %}
+
+#### 确定当前记录和下一条记录之间相差的天数
+
+- DB2
+
+  {% highlight sql linenos %}
+  select x.*,
+         days(x.next_hd) - days(x.hiredate) diff
+    from (
+  select e.deptno, e.ename, e.hiredate,
+         (select min(d.hiredate) from emp d
+           where d.hiredate > e.hiredate) next_hd
+    from emp e
+   where e.deptno = 10
+         ) x
+  {% endhighlight %}
+
+- MySQL and SQL Server
+
+  {% highlight sql linenos %}
+  select x.*,
+         datediff(day,x.hiredate,x.next_hd) diff
+    from (
+  select e.deptno, e.ename, e.hiredate,
+         (select min(d.hiredate) from emp d
+           where d.hiredate > e.hiredate) next_hd
+    from emp e
+   where e.deptno = 10
+         ) x
+  {% endhighlight %}
+
+- Oracle
+
+使用LEAD OVER：
+
+  {% highlight sql linenos %}
+  select ename, hiredate, next_hd,
+         next_hd - hiredate diff
+    from (
+  select deptno, ename, hiredate,
+         lead(hiredate)over(order by hiredate) next_hd
+    from emp
+         )
+   where deptno=10
+  {% endhighlight %}
+
+- PostgreSQL
+
+  {% highlight sql linenos %}
+  select x.*,
+         x.next_hd - x.hiredate as diff
+    from (
+  select e.deptno, e.ename, e.hiredate,
+         (select min(d.hiredate) from emp d
+           where d.hiredate > e.hiredate) as next_hd
+    from emp e
+   where e.deptno = 10
+         ) x
+  {% endhighlight %}
+
+### 日期操作
+
+使用同一种日期格式，即“DD-MON-YYYY”。
+
+##### 确定一年是否为闰年
+
+检查2月的最后一天，如果它为29，则当前年为闰年。
+
+- DB2
+
+  {% highlight sql linenos %}
+    with x (dy,mth)
+      as (
+  select dy, month(dy)
+    from (
+  select (current_date -
+           dayofyear(current_date) days +1 days)
+            +1 months as dy
+    from t1
+         ) tmp1
+   union all
+  select dy+1 days, mth
+    from x
+   where month(dy+1 day) = mth
+  )
+  select max(day(dy))
+    from x
+  {% endhighlight %}
+
+- Oracle
+
+  {% highlight sql linenos %}
+  select to_char(
+           last_day(add_months(trunc(sysdate,'y'),1)),
+          'DD')
+    from t1
+  {% endhighlight %}
+
+- PostgreSQL
+
+  {% highlight sql linenos %}
+  select max(to_char(tmp2.dy+x.id,'DD')) as dy
+    from (
+  select dy, to_char(dy,'MM') as mth
+    from (
+  select cast(cast(
+              date_trunc('year',current_date) as date)
+                         + interval '1 month' as date) as dy
+    from t1
+         ) tmp1
+         ) tmp2, generate_series (0,29) x(id)
+   where to_char(tmp2.dy+x.id,'MM') = tmp2.mth
+  {% endhighlight %}
+
+- MySQL
+
+  {% highlight sql linenos %}
+  select day(
+         last_day(
+         date_add(
+         date_add(
+         date_add(current_date,
+                  interval -dayofyear(current_date) day),
+                  interval 1 day),
+                  interval 1 month))) dy
+    from t1
+  {% endhighlight %}
+
+- SQL Server
+
+  {% highlight sql linenos %}
+    with x (dy,mth)
+      as (
+  select dy, month(dy)
+    from (
+  select dateadd(mm,1,(getdate( )-datepart(dy,getdate( )))+1) dy
+    from t1
+         ) tmp1
+   union all
+  select dateadd(dd,1,dy), mth
+    from x
+   where month(dateadd(dd,1,dy)) = mth
+  )
+  select max(day(dy))
+    from x
+  {% endhighlight %}
+
+#### 确定一年的天数
+
+首先找到当前年的第一天，接着给该日期加1年，最后从上一步的结果中减去当前年。
+
+- DB2
