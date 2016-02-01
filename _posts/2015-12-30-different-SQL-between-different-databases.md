@@ -1050,3 +1050,533 @@ select min(hiredate) as min_hd, max(hiredate) as max_hd
 首先找到当前年的第一天，接着给该日期加1年，最后从上一步的结果中减去当前年。
 
 - DB2
+
+  {% highlight sql linenos %}
+  select days((curr_year + 1 year)) - days(curr_year)
+    from (
+  select (current_date -
+          dayofyear(current_date) day +
+           1 day) curr_year
+    from t1
+         ) x
+  {% endhighlight %}
+
+- Oracle
+
+  {% highlight sql linenos %}
+  select add_months(trunc(sysdate,'y'),12) - trunc(sysdate,'y')
+	  from dual
+  {% endhighlight %}
+
+- PostgreSQL
+
+  {% highlight sql linenos %}
+  select cast((curr_year + interval '1 year') as date) - curr_year
+	  from (
+	select cast(date_trunc('year',current_date) as date) as curr_year
+	  from t1
+	       ) x
+  {% endhighlight %}
+
+- MySQL
+
+  {% highlight sql linenos %}
+  select datediff((curr_year + interval 1 year),curr_year)
+	  from (
+	select adddate(current_date,-dayofyear(current_date)+1) curr_year
+	  from t1
+	       ) x
+  {% endhighlight %}
+
+- SQL Server
+
+  {% highlight sql linenos %}
+  select datediff(d,curr_year,dateadd(yy,1,curr_year))
+	  from (
+	select dateadd(d,-datepart(dy,getdate())+1,getdate()) curr_year
+	  from t1
+	       ) x
+  {% endhighlight %}
+
+#### 从日期中提取时间的各部分
+
+- DB2
+
+  {% highlight sql linenos %}
+  select    hour( current_timestamp ) hr,
+	        minute( current_timestamp ) min,
+	        second( current_timestamp ) sec,
+	           day( current_timestamp ) dy,
+	         month( current_timestamp ) mth,
+	           year( current_timestamp ) yr
+	  from t1
+  {% endhighlight %}
+
+- Oracle
+
+  {% highlight sql linenos %}
+   select to_number(to_char(sysdate,'hh24')) hour,
+          to_number(to_char(sysdate,'mi')) min,
+          to_number(to_char(sysdate,'ss')) sec,
+          to_number(to_char(sysdate,'dd')) day,
+          to_number(to_char(sysdate,'mm')) mth,
+          to_number(to_char(sysdate,'yyyy')) year
+    from dual
+  {% endhighlight %}
+
+- PostgreSQL
+
+  {% highlight sql linenos %}
+  select to_number(to_char(current_timestamp,'hh24'),'99') as hr,
+	       to_number(to_char(current_timestamp,'mi'),'99') as min,
+	       to_number(to_char(current_timestamp,'ss'),'99') as sec,
+	       to_number(to_char(current_timestamp,'dd'),'99') as day,
+	       to_number(to_char(current_timestamp,'mm'),'99') as mth,
+	       to_number(to_char(current_timestamp,'yyyy'),'9999') as yr
+	  from t1
+  {% endhighlight %}
+
+- MySQL
+
+  {% highlight sql linenos %}
+  select date_format(current_timestamp,'%k') hr,
+	       date_format(current_timestamp,'%i') min,
+	       date_format(current_timestamp,'%s') sec,
+	       date_format(current_timestamp,'%d') dy,
+	       date_format(current_timestamp,'%m') mon,
+	       date_format(current_timestamp,'%Y') yr
+	  from t1
+  {% endhighlight %}
+
+- SQL Server
+
+  {% highlight sql linenos %}
+  select datepart( hour, getdate()) hr,
+	       datepart( minute,getdate()) min,
+	       datepart( second,getdate()) sec,
+	       datepart( day, getdate()) dy,
+	       datepart( month, getdate()) mon,
+	       datepart( year, getdate()) yr
+	  from t1
+  {% endhighlight %}
+
+#### 确定某个月的第一天和最后一天
+
+- DB2
+
+  {% highlight sql linenos %}
+  select (current_date - day(current_date) day +1 day) firstday,
+	       (current_date +1 month -day(current_date) day) lastday
+	  from t1
+  {% endhighlight %}
+
+- Oracle
+
+  {% highlight sql linenos %}
+  select trunc(sysdate,'mm') firstday,
+	       last_day(sysdate) lastday
+	  from dual
+  {% endhighlight %}
+
+- PostgreSQL
+
+  {% highlight sql linenos %}
+  select firstday,
+	       cast(firstday + interval '1 month'
+	                     - interval '1 day' as date) as lastday
+	  from (
+	select cast(date_trunc('month',current_date) as date) as firstday
+	  from t1
+	       ) x
+  {% endhighlight %}
+
+- MySQL
+
+  {% highlight sql linenos %}
+  select date_add(current_date,
+	                interval -day(current_date)+1 day) firstday,
+	       last_day(current_date) lastday
+	  from t1
+  {% endhighlight %}
+
+- SQL Server
+
+  {% highlight sql linenos %}
+  select dateadd(day,-day(getdate( ))+1,getdate( )) firstday,
+	       dateadd(day,
+	               -day(getdate( )),
+	               dateadd(month,1,getdate( ))) lastday
+	  from t1
+  {% endhighlight %}
+
+### 高级查找
+
+#### 给结果集分页
+
+- DB2、Oracle和SQL Server
+
+  {% highlight sql linenos %}
+  select sal
+    from (
+  select row_number( ) over (order by sal) as rn,
+         sal
+    from emp
+         ) x
+   where rn between 1 and 5
+  {% endhighlight %}
+
+- MySQL和PostgreSQL
+
+  {% highlight sql linenos %}
+  select sal
+	  from emp
+	 order by sal limit 5 offset 0
+  {% endhighlight %}
+
+#### 跳过表中n行
+
+- DB2、Oracle和SQL Server
+
+  {% highlight sql linenos %}
+  select ename
+    from (
+  select row_number( ) over (order by ename) rn,
+         ename
+    from emp
+         ) x
+   where mod(rn,2) = 1
+  {% endhighlight %}
+
+- MySQL和PostgreSQL
+
+  {% highlight sql linenos %}
+  select x.ename
+    from (
+  select a.ename,
+    (select count(*)
+            from emp b
+            where b.ename <= a.ename) as rn
+     from emp a
+          ) x
+   where mod(x.rn,2) = 1
+  {% endhighlight %}
+
+#### 在外联接中用OR逻辑
+
+- DB2, MySQL, PostgreSQL, and SQL Server
+
+  {% highlight sql linenos %}
+  select e.ename, d.deptno, d.dname, d.loc
+    from dept d left join emp e
+      on (d.deptno = e.deptno
+         and (e.deptno=10 or e.deptno=20))
+   order by 2
+  {% endhighlight %}
+
+  或者
+
+  {% highlight sql linenos %}
+  select e.ename, d.deptno, d.dname, d.loc
+    from dept d
+    left join
+         (select ename, deptno
+            from emp
+           where deptno in ( 10, 20 )
+         ) e on ( e.deptno = d.deptno )
+  order by 2
+  {% endhighlight %}
+
+-  Oracle
+
+  Oracle9i和之后的产品可使用上面的方案
+
+#### 找到包含最大值和最小值的记录
+
+- DB2, Oracle, and SQL Server
+
+  {% highlight sql linenos %}
+  select ename
+    from (
+  select ename, sal,
+         min(sal)over( ) min_sal,
+         max(sal)over( ) max_sal
+    from emp
+         ) x
+   where sal in (min_sal,max_sal)
+  {% endhighlight %}
+
+- MySQL and PostgreSQL
+
+  {% highlight sql linenos %}
+  select ename
+    from emp
+   where sal in ( (select min(sal) from emp),
+                  (select max(sal) from emp) )
+  {% endhighlight %}
+
+#### 存取“未来”行
+
+  找到满足这样条件的员工：即他的收入紧随其后聘用的员工要少
+
+- DB2, MySQL, PostgreSQL, and SQL Server
+
+  {% highlight sql linenos %}
+  select ename, sal, hiredate
+    from (
+  select a.ename, a.sal, a.hiredate,
+        (select min(hiredate) from emp b
+          where b.hiredate > a.hiredate
+            and b.sal > a.sal ) as next_sal_grtr,
+        (select min(hiredate) from emp b
+          where b.hiredate > a.hiredate) as next_hire
+    from emp a
+         ) x
+    where next_sal_grtr = next_hire
+  {% endhighlight %}
+
+- Oracle
+
+  {% highlight sql linenos %}
+  select ename, sal, hiredate
+    from (
+  select ename, sal, hiredate,
+         lead(sal)over(order by hiredate) next_sal
+    from emp
+         )
+   where sal < next_sal
+  {% endhighlight %}
+
+### 报表和数据仓库运算
+
+#### 将结果转置为一行
+
+  将：
+
+  {% highlight text %}
+  DEPTNO        CNT
+------ ----------
+    10          3
+    20          5
+    30          6
+  {% endhighlight %}
+
+  转换为：
+
+  % highlight text %}
+  DEPTNO_10   DEPTNO_20   DEPTNO_30
+---------  ----------  ----------
+        3           5           6
+  {% endhighlight %}
+
+- ALL
+
+{% highlight sql linenos %}
+select sum(case when deptno=10 then 1 else 0 end) as deptno_10,
+       sum(case when deptno=20 then 1 else 0 end) as deptno_20,
+       sum(case when deptno=30 then 1 else 0 end) as deptno_30
+  from emp
+{% endhighlight %}
+
+#### 创建横向直方图
+
+例如：
+
+{% highlight text %}
+DEPTNO CNT
+------ ----------
+    10 ***
+    20 *****
+    30 ******
+{% endhighlight %}
+
+- DB2
+
+  {% highlight sql linenos %}
+  select deptno,
+         repeat('*',count(*)) cnt
+    from emp
+   group by deptno
+  {% endhighlight %}
+
+- Oracle, PostgreSQL, and MySQL
+
+  {% highlight sql linenos %}
+  select deptno,
+         lpad('*',count(*),'*') as cnt
+    from emp
+   group by deptno
+  {% endhighlight %}
+
+- SQL Server
+
+  {% highlight sql linenos %}
+  select deptno,
+	       replicate('*',count(*)) cnt
+	  from emp
+	 group by deptno
+  {% endhighlight %}
+
+#### 创建纵向直方图
+
+例如：
+
+{% highlight text %}
+D10 D20 D30
+--- --- ---
+        *
+    *   *
+    *   *
+*   *   *
+*   *   *
+*   *   *
+{% endhighlight %}
+
+- DB2, Oracle, and SQL Server
+
+  {% highlight sql linenos %}
+  select max(deptno_10) d10,
+         max(deptno_20) d20,
+         max(deptno_30) d30
+    from (
+  select row_number( )over(partition by deptno order by empno) rn,
+         case when deptno=10 then '*' else null end deptno_10,
+         case when deptno=20 then '*' else null end deptno_20,
+         case when deptno=30 then '*' else null end deptno_30
+    from emp
+          ) x
+    group by rn
+    order by 1 desc, 2 desc, 3 desc
+
+  {% endhighlight %}
+
+- PostgreSQL and MySQL
+
+  {% highlight sql linenos %}
+  select max(deptno_10) as d10,
+         max(deptno_20) as d20,
+         max(deptno_30) as d30
+    from (
+  select case when e.deptno=10 then '*' else null end deptno_10,
+         case when e.deptno=20 then '*' else null end deptno_20,
+         case when e.deptno=30 then '*' else null end deptno_30,
+         (select count(*) from emp d
+           where e.deptno=d.deptno and e.empno < d.empno ) as rnk
+     from emp e
+          ) x
+    group by rnk
+    order by 1 desc, 2 desc, 3 desc
+  {% endhighlight %}
+
+
+### 分层查询
+
+#### 创建表的分层视图
+
+- DB2 and SQL Server
+
+  {% highlight sql linenos %}
+   with x (ename,empno)
+      as (
+  select cast(ename as varchar(100)),empno
+    from emp
+   where mgr is null
+   union all
+  select cast(x.ename||' - '||e.ename as varchar(100)),
+         e.empno
+    from emp e, x
+    where e.mgr = x.empno
+   )
+   select ename as emp_tree
+     from x
+    order by 1
+  {% endhighlight %}
+
+- Oracle
+
+  {% highlight sql linenos %}
+  select ltrim(
+	         sys_connect_by_path(ename,' - '),
+	       ' - ') emp_tree
+	  from emp
+	  start with mgr is null
+	connect by prior empno=mgr
+	  order by 1
+  {% endhighlight %}
+
+- PostgreSQL
+
+  {% highlight sql linenos %}
+ select emp_tree
+   from  (
+ select ename as emp_tree
+   from  emp
+  where mgr is null
+ union
+ select a.ename||' - '||b.ename
+   from emp a
+        join
+         emp b on (a.empno=b.mgr)
+   where a.mgr is null
+  union
+  select rtrim(a.ename||' - '||b.ename
+                      ||' - '||c.ename,' - ')
+    from emp a
+         join
+         emp b on (a.empno=b.mgr)
+         left join
+         emp c on (b.empno=c.mgr)
+   where a.ename = 'KING'
+  union
+  select rtrim(a.ename||' - '||b.ename||' - '||
+               c.ename||' - '||d.ename,' - ')
+    from emp a
+         join
+         emp b on (a.empno=b.mgr)
+         join
+         emp c on (b.empno=c.mgr)
+         left join
+         emp d on (c.empno=d.mgr)
+   where a.ename = 'KING'
+         ) x
+   where tree is not null
+   order by 1
+  {% endhighlight %}
+
+  - Oracle
+
+    {% highlight sql linenos %}
+   select emp_tree
+    from (
+ 	 select ename as emp_tree
+    from emp
+   where mgr is null
+ 	 union
+ 	 select concat(a.ename,' - ',b.ename)
+    from emp a
+         join
+ 	        emp b on (a.empno=b.mgr)
+ 	  where a.mgr is null
+ 	 union
+ 	 select concat(a.ename,' - ',
+ 	               b.ename,' - ',c.ename)
+ 	   from emp a
+ 	        join
+ 	        emp b on (a.empno=b.mgr)
+ 	        left join
+ 	        emp c on (b.empno=c.mgr)
+ 	  where a.ename = 'KING'
+ 	 union
+ 	 select concat(a.ename,' - ',b.ename,' - ',
+ 	               c.ename,' - ',d.ename)
+ 	   from emp a
+ 	        join
+ 	        emp b on (a.empno=b.mgr)
+ 	        join
+ 	        emp c on (b.empno=c.mgr)
+ 	        left join
+ 	        emp d on (c.empno=d.mgr)
+ 	  where a.ename = 'KING'
+ 	        ) x
+ 	  where tree is not null
+ 	  order by 1
+    {% endhighlight %}
