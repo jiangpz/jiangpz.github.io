@@ -1362,7 +1362,7 @@ select min(hiredate) as min_hd, max(hiredate) as max_hd
 
   转换为：
 
-  % highlight text %}
+  {% highlight text %}
   DEPTNO_10   DEPTNO_20   DEPTNO_30
 ---------  ----------  ----------
         3           5           6
