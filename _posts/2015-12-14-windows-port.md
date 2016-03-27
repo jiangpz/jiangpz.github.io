@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Windows某个端口被占用情况"
-excerpt: "解决Windows某个端口被占用的问题."
+excerpt: "解决Windows某个端口被占用的问题，再简单说一下Linux下的处理."
 date:   2015-12-14 11:46:42 +0800
 categories: cmd
 tags: [cmd, Windows]
@@ -57,3 +57,5 @@ netstat -aon|findstr "XXXXX"
 tasklist|findstr "XXXXX"
 taskkill /f /t /im XXXXX.exe
 {% endhighlight %}
+
+如果在Linux下可以使用`netstat -anp | grep 端口号`查找，然后`kill`即可。
