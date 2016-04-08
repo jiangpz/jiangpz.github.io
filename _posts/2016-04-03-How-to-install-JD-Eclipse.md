@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Eclipse安装Java反编译插件"
-excerpt: "Linux 开放80、8080端口或者开放某个端口。"
+excerpt: "Eclipse中安装Java反编译插件，用于调试与查看源码。"
 date:   2016-03-16 14:26:08 +0800
 categories: Eclipse
 tags: [Eclipse]
