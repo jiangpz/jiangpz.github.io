@@ -5,6 +5,7 @@ excerpt: "Eclipse中安装Java反编译插件，用于调试与查看源码。"
 date:   2016-04-03 17:26:08 +0800
 categories: Eclipse
 tags: [Eclipse]
+comments: true
 ---
 
 JD(Java Decompiler)分为JD-GUI、JD-Eclipse、JD-IntelliJ三种运行方式，JD-GUI是以单独的程序的方式运行，JD-Eclipse是以一个Eclipse插件的方式运行，JD-IntelliJ是以一个IntelliJ IDEA插件的方式运行。
