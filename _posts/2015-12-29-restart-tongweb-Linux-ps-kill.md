@@ -5,6 +5,7 @@ excerpt: "修改TongWeb默认编码与TongWeb重启方法."
 date:   2015-12-29 15:46:21 +0800
 categories: Linux
 tags: [Linux, TongWeb]
+comments: true
 ---
 
 在使用TongWeb中经常会出现乱码，我们的项目默认使用UTF-8编码，而TongWeb默认使用的编码是GBK。修改完编码后TongWeb是需要重启的，可是TongWeb可不是个省心的中间件。

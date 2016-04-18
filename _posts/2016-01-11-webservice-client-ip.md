@@ -5,6 +5,7 @@ excerpt: "记录客户端访问WebService的IP地址."
 date:   2016-01-11 21:46:21 +0800
 categories: J2EE
 tags: [J2EE, CXF]
+comments: true
 ---
 
 在服务端的WebService在被调用时，往往需要记录访问者IP、对IP进行限制或者其进行其他一些记录日志的操作，这时候需要我们对已经写好的接口增加拦截器。

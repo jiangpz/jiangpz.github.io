@@ -5,6 +5,7 @@ excerpt: "不同数据库中SQL函数存在不同."
 date:   2015-12-30 15:46:21 +0800
 categories: SQL
 tags: [SQl, Oracle，MySQL]
+comments: true
 ---
 
 在编写完SQL后需要在不同的数据库中运行，不同的数据的SQL函数和语法还算有些区别的，在读《SQL Cookbook》的同时，将这些区别记录下来。建库脚本在[这里](http://examples.oreilly.com/9780596009762/sql_cookbook.zip)。

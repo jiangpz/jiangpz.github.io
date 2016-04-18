@@ -5,6 +5,7 @@ excerpt: "使用vmware提示无法打开内核设备  . Global vmx86: 系统找�
 date:   2016-01-27 09:46:21 +0800
 categories: Vmware
 tags: [Vmware]
+comments: true
 ---
 
 问题描述：vmware启动提示``无法打开内核设备 \\.\Global\vmx86: 系统找不到指定的文件``

@@ -5,6 +5,7 @@ excerpt: "在Eclipse中统计代码行数。"
 date:   2015-11-07 15:53:29 +0800
 categories: Eclipse
 tags: [Eclipse]
+comments: true
 ---
 ---
 

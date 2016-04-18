@@ -5,6 +5,7 @@ excerpt: "DoxyGen生成的html制作成CHM后目录为乱码的问题."
 date:   2013-01-16 21:30:12 +0800
 categories: DoxyGen
 tags: [DoxyGen]
+comments: true
 ---
 ---
 

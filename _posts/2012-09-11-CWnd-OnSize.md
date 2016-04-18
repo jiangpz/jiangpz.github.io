@@ -5,6 +5,7 @@ excerpt: "CWnd::OnSize."
 date:   2012-09-11 22:30:12 +0800
 categories: MFC
 tags: [MFC]
+comments: true
 ---
 ---
 

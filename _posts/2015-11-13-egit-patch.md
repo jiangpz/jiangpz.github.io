@@ -5,6 +5,7 @@ excerpt: "Git为我们提供了Patch功能，Patch中包含了源码更改的描
 date:   2015-11-13 14:16:58 +0800
 categories: Egit
 tags: [Egit, Eclipse]
+comments: true
 ---
 ---
 

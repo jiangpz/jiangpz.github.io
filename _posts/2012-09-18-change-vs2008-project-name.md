@@ -5,6 +5,7 @@ excerpt: "修改VS2008（vc）中工程/解决方案/类的名字."
 date:   2012-09-18 17:57:12 +0800
 categories: MFC
 tags: [MFC]
+comments: true
 ---
 ---
 

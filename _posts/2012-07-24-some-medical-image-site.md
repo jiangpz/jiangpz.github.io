@@ -5,6 +5,7 @@ excerpt: "医学图像获取相对困得，这里是一些可以获取医学图�
 date:   2012-07-24 22:30:12 +0800
 categories: DICOM
 tags: [DICOM]
+comments: true
 ---
 ---
 下图像

@@ -5,6 +5,7 @@ excerpt: "对linux下压缩与解压命令进行一个简单的总结。"
 date:   2016-02-14 02:13:14 +0800
 categories: Linux
 tags: [Linux]
+comments: true
 ---
 
 #### 解压速查

@@ -5,6 +5,7 @@ excerpt: "在使用《GPU高性能编程-CUDA实战》中例子在运行时会�
 date:   2013-03-13 15:53:46 +0800
 categories: CUDA
 tags: [CUDA]
+comments: true
 ---
 ---
 

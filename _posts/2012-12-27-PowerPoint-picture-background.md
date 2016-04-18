@@ -5,6 +5,7 @@ excerpt: "PowerPoint中设置图片背景透明."
 date:   2012-12-27 15:30:12 +0800
 categories: Office
 tags: [Office]
+comments: true
 ---
 ---
 

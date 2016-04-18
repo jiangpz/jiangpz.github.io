@@ -5,6 +5,7 @@ excerpt: "Linux 开放80、8080端口或者开放某个端口。"
 date:   2016-03-16 14:26:08 +0800
 categories: Linux
 tags: [Linux]
+comments: true
 ---
 
 在安装CentOS时只开启了22端口，在Linux上部署项目之后，其他机器不能访问网站。

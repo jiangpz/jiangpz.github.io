@@ -5,6 +5,7 @@ excerpt: "Linux下使用sudo时报is not in the sudoers file解决方法。"
 date:   2016-03-5 10:46:25 +0800
 categories: Linux
 tags: [Linux]
+comments: true
 ---
 
 当我们使用`sudo`命令切换用户的时候可能会遇到提示以下错误：

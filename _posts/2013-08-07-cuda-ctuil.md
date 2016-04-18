@@ -5,6 +5,7 @@ excerpt: "由于Cuda 5.0不支持cutil.h，需要用helper_cuda.h等文件代替
 date:   2013-01-09 19:00:42 +0800
 categories: CUDA
 tags: [CUDA]
+comments: true
 ---
 ---
 

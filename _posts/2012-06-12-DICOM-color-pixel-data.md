@@ -5,6 +5,7 @@ excerpt: "判断DICOM图像是单色的还是彩色的与如何获取DICOM图像
 date:   2012-06-12 21:30:12 +0800
 categories: DICOM
 tags: [DICOM]
+comments: true
 ---
 ---
 

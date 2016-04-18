@@ -5,6 +5,7 @@ excerpt: "《GPU高性能编程-CUDA实战》中例子头文件使用."
 date:   2012-12-25 20:45:12 +0800
 categories: CUDA
 tags: [CUDA]
+comments: true
 ---
 ---
 

@@ -5,6 +5,7 @@ excerpt: "安装完CentOS 6.6系统之后，我们需要设置系统自带的中
 date:   2015-11-26 16:46:21 +0800
 categories: Linux
 tags: [Linux]
+comments: true
 ---
 
 安装完系统之后，我们需要设置中文输入法，中文输入法是系统自带的，设置步骤如下：

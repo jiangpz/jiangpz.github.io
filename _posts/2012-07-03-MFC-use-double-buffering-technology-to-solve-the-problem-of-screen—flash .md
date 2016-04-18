@@ -5,6 +5,7 @@ excerpt: "传统的绘图方式实际上是一种单缓冲,相邻两帧图像之
 date:   2012-07-03 22:30:12 +0800
 categories: MFC
 tags: [MFC, C]
+comments: true
 ---
 ---
 

@@ -5,6 +5,7 @@ excerpt: "Kahan's Summation Formula."
 date:   2012-12-20 15:30:12 +0800
 categories: CUDA
 tags: [CUDA]
+comments: true
 ---
 ---
 

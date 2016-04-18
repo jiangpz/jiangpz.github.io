@@ -5,6 +5,7 @@ excerpt: "Linux命令：nohup、df、du与/dev/null的使用方式"
 date:   2015-11-10 09:53:29 +0800
 categories: Linux
 tags: [Linux]
+comments: true
 ---
 ---
 

@@ -5,6 +5,7 @@ excerpt: "对话框大小与像素关系."
 date:   2012-07-24 22:30:12 +0800
 categories: MFC
 tags: [MFC]
+comments: true
 ---
 ---
 

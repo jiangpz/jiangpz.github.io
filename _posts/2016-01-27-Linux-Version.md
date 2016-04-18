@@ -5,6 +5,7 @@ excerpt: "查看linux版本。"
 date:   2016-01-27 10:00:21 +0800
 categories: Linux
 tags: [Linux]
+comments: true
 ---
 
 ####查看linux内核版本号

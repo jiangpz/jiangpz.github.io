@@ -5,6 +5,7 @@ excerpt: "CUDA中记录GPU耗时与C编程中记录CPU耗时的方法"
 date:   2013-05-06 09:55:00 +0800
 categories: CUDA
 tags: [CUDA, C++]
+comments: true
 ---
 ---
 

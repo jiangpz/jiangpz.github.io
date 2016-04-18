@@ -5,6 +5,7 @@ excerpt: "JavaScript中判断字符串是否以固定字符开始.可以使用st
 date:   2016-01-22 11:46:21 +0800
 categories: JavaScript
 tags: [J2EE, JavaScript, IE兼容性]
+comments: true
 ---
 
 JavaScript中判断字符串是否以固定字符开始.可以使用startsWith，但是存在兼容性问题。

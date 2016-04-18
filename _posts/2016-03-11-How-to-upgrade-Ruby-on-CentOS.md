@@ -5,6 +5,7 @@ excerpt: "CentOS上使用yum安装的Ruby的版本较低，在用Jekyll写博客
 date:   2016-03-11 12:44:25 +0800
 categories: Linux
 tags: [Linux, Ruby]
+comments: true
 ---
 
 在CentOS中安装Jekyll时，报如下错误

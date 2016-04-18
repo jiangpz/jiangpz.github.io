@@ -5,6 +5,7 @@ excerpt: "CPUBitmap的定义."
 date:   2012-12-30 15:30:12 +0800
 categories: CUDA
 tags: [CUDA]
+comments: true
 ---
 ---
 

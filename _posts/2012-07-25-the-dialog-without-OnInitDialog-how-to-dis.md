@@ -5,6 +5,7 @@ excerpt: "一个对话框，初始时没有OnInitDialog()函数，我们如何�
 date:   2012-07-25 22:30:12 +0800
 categories: MFC
 tags: [MFC]
+comments: true
 ---
 ---
 
