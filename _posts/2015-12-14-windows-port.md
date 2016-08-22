@@ -59,4 +59,4 @@ tasklist|findstr "XXXXX"
 taskkill /f /t /im XXXXX.exe
 {% endhighlight %}
 
-如果在Linux下可以使用`netstat -anp | grep 端口号`查找，然后`kill`即可。
+如果在Linux下可以使用`netstat -anp | grep 端口号`或者`netstat -tunlp`查找，然后`kill`即可。
