@@ -2,13 +2,13 @@
 layout: default
 ---
 
-<div class="back-home">
-  <a href="{{ site.url }}/">< back Home.</a>
-</div>
+<a class="btn" href= "{{ site.url }}/" >
+  Home
+</a>
 {% if page.image.feature %}
 <div class="post-image-feature">
   <img class="feature-image" src=
-  {% if post.image.feature contains 'http' %}
+  {% if page.image.feature contains 'https' or page.image.feature contains 'http' %}
   "{{ page.image.feature }}"
   {% else %}
   "{{ site.url }}/img/{{ page.image.feature }}"
@@ -24,7 +24,7 @@ layout: default
 
 <div id="post">
   <header class="post-header">
-    <h2 title="{{ page.title }}">{{ page.title }}</h2>
+    <h1 title="{{ page.title }}">{{ page.title }}</h1>
     <span class="post-meta">
       <span class="post-date">
         {{ page.date | date: "%-d %b %Y" | upcase }}

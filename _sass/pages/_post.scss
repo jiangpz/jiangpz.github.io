@@ -6,6 +6,8 @@
   z-index: 233;
   width: 100%;
   padding: 20px 20px 0;
+  -webkit-transform: translate3d(0,0,1px);
+  transform: translate3d(0,0,1px);
   @include media-query($small-screen) {
     padding: 50px 30px 0;
   }
@@ -28,15 +30,18 @@
 
 // Post Section
 section.post {
-	margin-bottom: 60px;
+	margin-bottom: 80px;
 }
 
 // Back home button
 
 .back-home a {
+  font-size: 13px;
+  font-weight: bold;
   color: $info;
-  text-decoration: underline;
-  font-family: $font-family-monospace;
+  border: 1px solid lighten($text-color, 45%);
+  border-radius: 0.4em;
+  padding: 0.5em 1em;
 }
 
 // Post title
@@ -87,6 +92,19 @@ a.read-more {
   .post-header {
     margin: 0 auto 50px;
   }
+}
+
+#post h1 {
+  margin: 0.5em 0 1em;
+}
+#post h2 {
+  margin: 2em 0 0.8em;
+  padding-bottom: 0.7em;
+  border-bottom: 1px solid #ddd;
+}
+#post h3 {
+  margin: 1.75em 0 1.2em;
+  position: relative;
 }
 
 #page {
