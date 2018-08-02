@@ -2,12 +2,11 @@
 layout: post
 title:  "Examining your data"
 excerpt: "Kaggle House Prices数据预处理"
-date:   2018-08-02 18:01:08 +0800
+date:   2018-08-02 15:01:08 +0800
 categories: Kaggle
 tags: [Kaggle, DataClean]
 comments: true
 ---
-<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
 <title>Examining your data</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
@@ -11783,9 +11782,6 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="COMPREHENSIVE-DATA-EXPLORATION-WITH-PYTHON">COMPREHENSIVE DATA EXPLORATION WITH PYTHON<a class="anchor-link" href="#COMPREHENSIVE-DATA-EXPLORATION-WITH-PYTHON">&#182;</a></h3>
-</div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
