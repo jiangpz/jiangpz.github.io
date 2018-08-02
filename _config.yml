@@ -5,7 +5,8 @@
 #
 title:       "Jiang Pz's blog"
 description: 'A backend developer who loves design awesome things. Working for CTVIT in Beijing, China.'
-url:https://jiangpz.github.io
+url:         'https://jiangpz.github.io'
+#url:         'http://jiangpz.github.io'
 
 #
 ###################################
