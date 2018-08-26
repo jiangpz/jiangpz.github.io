@@ -2,7 +2,7 @@
 layout: post
 title:  "Regularized Linear Models, Xgboost And Feedforward Neural Nets"
 excerpt: "Kaggle House Prices 使用线性回归、xgboost和前馈神经网络预测房价"
-date:   2018-08-26 08:01:08 +0000
+date:   2018-08-26 07:01:08 +0800
 categories: Kaggle
 tags: [Kaggle, Modeling, xgboost]
 comments: true
